@@ -16,6 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (button) button.style.display = "block";
   }
 
+  // Hide on load
   hideButton();
   const interval = setInterval(hideButton, 500);
 
@@ -30,11 +31,13 @@ document.addEventListener("DOMContentLoaded", function () {
       window.addEventListener("message", (event) => {
         console.log("📩 Message received:", event.data);
 
+        // ✅ Tally completion (safe check for string messages)
         if (typeof event.data === "string" && event.data.includes("complete")) {
           console.log("✅ Tally form completed → showing button");
           showButton();
         }
 
+        // ✅ Fillout completion
         if (event.data?.type === "form_submit") {
           console.log("✅ Fillout form submitted → showing button");
           showButton();
